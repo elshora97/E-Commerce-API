@@ -1,10 +1,29 @@
 require("dotenv").config();
+require("express-async-errors");
+
 const express = require("express");
 const app = express();
 
+//rest of packages
+const morgan = require("morgan");
+
+//database
 const connectDB = require("./db/connect");
+//middleware
+const notFoundMiddleware = require("./middleware/not-found");
+const errorHandlerMiddleware = require("./middleware/not-found");
 
 const PORT = process.env.PORT || 3000;
+
+app.use(morgan("tiny"));
+app.use(express.json());
+
+app.get("/", (req, res) => {
+  res.send("E-commerce api");
+});
+
+app.use(notFoundMiddleware);
+app.use(errorHandlerMiddleware);
 
 const start = async () => {
   try {
