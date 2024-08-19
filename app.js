@@ -15,7 +15,7 @@ const authRoutes = require("./routes/authRoutes");
 
 //middleware
 const notFoundMiddleware = require("./middleware/not-found");
-const errorHandlerMiddleware = require("./middleware/not-found");
+const errorHandlerMiddleware = require("./middleware/error-handler");
 
 const PORT = process.env.PORT || 3000;
 
