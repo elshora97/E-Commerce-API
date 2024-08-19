@@ -6,6 +6,7 @@ const app = express();
 
 //rest of packages
 const morgan = require("morgan");
+const cookieParser = require("cookie-parser");
 
 //database
 const connectDB = require("./db/connect");
@@ -21,6 +22,7 @@ const PORT = process.env.PORT || 3000;
 
 app.use(morgan("tiny"));
 app.use(express.json());
+app.use(cookieParser(process.env.JWT_SECRET));
 
 app.get("/", (req, res) => {
   res.send("E-commerce api");
