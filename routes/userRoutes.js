@@ -16,7 +16,7 @@ const {
 routes
   .route("/")
   .get(authenticateUser, authorizePermissions("admin"), getAllUsers);
-routes.route("/showMe").get(showCurrentUser);
+routes.route("/showMe").get(authenticateUser, showCurrentUser);
 routes
   .route("/:id")
   .get(authenticateUser, authorizePermissions("admin"), getSingleUser);
