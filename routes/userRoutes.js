@@ -12,7 +12,7 @@ const {
 routes.route("/").get(getAllUsers);
 routes.route("/showMe").get(showCurrentUser);
 routes.route("/:id").get(getSingleUser);
-routes.route("/updateUser").post(updateUser);
-routes.route("/updateUserPassword").post(updateUserPassword);
+routes.route("/updateUser").patch(updateUser);
+routes.route("/updateUserPassword").patch(updateUserPassword);
 
 module.exports = routes;
