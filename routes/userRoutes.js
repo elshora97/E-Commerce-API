@@ -21,6 +21,6 @@ routes
   .route("/:id")
   .get(authenticateUser, authorizePermissions("admin"), getSingleUser);
 routes.route("/updateUser").patch(updateUser);
-routes.route("/updateUserPassword").patch(updateUserPassword);
+routes.route("/updateUserPassword").patch(authenticateUser, updateUserPassword);
 
 module.exports = routes;
