@@ -20,7 +20,7 @@ routes.route("/showMe").get(authenticateUser, showCurrentUser);
 routes
   .route("/:id")
   .get(authenticateUser, authorizePermissions("admin"), getSingleUser);
-routes.route("/updateUser").patch(updateUser);
+routes.route("/updateUser").patch(authenticateUser, updateUser);
 routes.route("/updateUserPassword").patch(authenticateUser, updateUserPassword);
 
 module.exports = routes;
