@@ -78,13 +78,14 @@ const updateReview = async (req, res) => {
 };
 
 const deleteReview = async (req, res) => {
-  const review = await Review.findOneAndDelete({ _id: req.params.id });
+  const review = await Review.findOne({ _id: req.params.id });
   if (!review) {
     throw new CustomError.NotFoundError(
       `No product with id : ${req.params.id}`
     );
   }
   chechPermissions(req.user, review.user);
+  await review.deleteOne();
   res.status(StatusCodes.OK).json({ msg: "Review deleted" });
 };
 
