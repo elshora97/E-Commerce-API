@@ -27,12 +27,24 @@ const createReview = async (req, res) => {
 };
 
 const getAllReviews = async (req, res) => {
-  const reviews = await Review.find({});
+  const reviews = await Review.find({})
+    .populate({
+      path: "product",
+      select: "name price company",
+    })
+    .populate({
+      path: "user",
+      select: "name",
+    });
+
   res.status(StatusCodes.OK).json({ reviews, count: reviews.length });
 };
 
 const getSingleReview = async (req, res) => {
-  const review = await Review.findOne({ _id: req.params.id });
+  const review = await Review.findOne({ _id: req.params.id }).populate({
+    path: "product",
+    select: "name price company",
+  });
   if (!review) {
     throw new CustomError.NotFoundError(
       `No product with id : ${req.params.id}`
