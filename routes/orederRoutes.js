@@ -17,11 +17,11 @@ routes
   .get([authenticateUser, authorizePermissions("admin")], getAllOrders)
   .post(authenticateUser, createOrder);
 
+routes.route("/showAllMyOrders").get(authenticateUser, getCurrentUserOrders);
+
 routes
   .route("/:id")
   .get(authenticateUser, getSingleOrder)
   .patch(authenticateUser, updateOrder);
-
-routes.route("/showAllMyOrders").get(authenticateUser, getCurrentUserOrders);
 
 module.exports = routes;
